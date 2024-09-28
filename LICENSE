@@ -1,0 +1,53 @@
+SOFTWARE AND SOURCE CODE LICENSE AGREEMENT (NON-COMMERCIAL USE)
+This Software and Source Code License Agreement (the "Agreement") is a legal agreement between you (either an individual or an entity) and Adrian Linder,Matthias Tschmelitsch ("Developer"), the author and owner of the software and its accompanying source code (the "Software" and "Source Code"). By downloading, installing, copying, using, or accessing the Software and/or Source Code, you agree to be bound by the terms of this Agreement. If you do not agree to the terms of this Agreement, do not use or install the Software or Source Code.
+
+1. License Grant (Non-Commercial Use)
+Subject to the terms of this Agreement, the Developer hereby grants you a limited, non-exclusive, non-transferable, revocable license to download, modify, and use the Software and its Source Code for personal, educational, research, or other non-commercial purposes (the "License"). This License allows you to:
+
+Use, modify, and compile the Software and Source Code for non-commercial projects.
+Share, distribute, and contribute to the Source Code as long as it remains in a non-commercial space (e.g., open-source, academic research, or personal projects).
+Fork and submit pull requests to the Source Code on GitHub or similar platforms for non-commercial purposes.
+2. Commercial Use
+If you wish to use the Software or Source Code for any commercial purpose, you must enter into a separate commercial agreement with the Developer. Commercial use includes, but is not limited to:
+
+Selling or licensing the Software or Source Code.
+Using the Software or Source Code as part of a product, service, or application that is sold, licensed, or otherwise commercially exploited.
+Using the Software or Source Code in environments or for purposes that generate revenue or provide commercial benefit.
+To obtain commercial rights, you must contact the Developer and negotiate a separate commercial license. For inquiries regarding commercial use, please contact the Developer at: commercial@lauch.eu.
+
+3. Forking and Contributions on GitHub
+You are free to fork, clone, and modify the Source Code on platforms like GitHub for non-commercial purposes.
+Any contributions you make to the Source Code (such as pull requests, patches, or bug fixes) must also comply with the non-commercial nature of this License, unless otherwise agreed upon with the Developer.
+4. Restrictions
+You agree not to:
+
+Use the Software or Source Code for any commercial purpose without explicit written permission from the Developer.
+Distribute, sublicense, lease, rent, or otherwise transfer the Software or Source Code for commercial gain without entering into a commercial license agreement with the Developer.
+Use the Software or Source Code for illegal activities or purposes.
+Remove, obscure, or alter any proprietary notices (including copyright and trademark notices) in the Software or Source Code.
+5. Ownership and Copyright
+The Software and Source Code are the intellectual property of and are owned by the Developer. All rights, title, and interest in and to the Software and Source Code, including all copyrights, trademarks, and other intellectual property rights, are retained by the Developer. This Agreement does not grant you any rights to the Developer's trademarks, patents, or other proprietary marks.
+
+6. Disclaimer of Warranty
+THE SOFTWARE AND SOURCE CODE ARE PROVIDED "AS IS," WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT. THE DEVELOPER MAKES NO WARRANTY THAT THE SOFTWARE OR SOURCE CODE WILL BE ERROR-FREE OR UNINTERRUPTED, OR THAT ANY ERRORS WILL BE CORRECTED.
+
+7. Limitation of Liability
+IN NO EVENT SHALL THE DEVELOPER BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR EXEMPLARY DAMAGES (INCLUDING BUT NOT LIMITED TO DAMAGES FOR LOSS OF PROFITS, GOODWILL, USE, DATA, OR OTHER INTANGIBLE LOSSES) ARISING OUT OF OR IN CONNECTION WITH YOUR USE OF THE SOFTWARE OR SOURCE CODE, WHETHER BASED ON CONTRACT, TORT, STRICT LIABILITY, OR OTHERWISE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+
+8. Termination
+This License is effective until terminated. The License will terminate automatically without notice if you fail to comply with any term of this Agreement. Upon termination, you must immediately cease all use of the Software and Source Code and destroy all copies, full or partial, of the Software and Source Code.
+
+9. Governing Law
+This Agreement shall be governed by and construed in accordance with the laws of Austria. Any disputes arising under or in connection with this Agreement shall be resolved in the courts of Austria.
+
+10. Entire Agreement
+This Agreement constitutes the entire agreement between you and the Developer concerning the Software and Source Code and supersedes any prior or contemporaneous understandings regarding such subject matter.
+
+11. Severability
+If any provision of this Agreement is found to be unlawful, void, or for any reason unenforceable, then that provision will be deemed severable from this Agreement and will not affect the validity and enforceability of any remaining provisions.
+
+By using the Software or Source Code, you acknowledge that you have read this Agreement, understand it, and agree to be bound by its terms and conditions.
+
+Contact Information for Commercial Licensing Inquiries:
+Adrian Linder & Matthias Tschmelitsch
+commercial@lauch.eu
