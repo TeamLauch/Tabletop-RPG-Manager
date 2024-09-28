@@ -1,0 +1,231 @@
+Widget:
+ - id: string,
+ - children: {
+   - id: string,
+   - type: string,
+   - values: (playerData, characterData, getFieldData, constData) => string[],
+   - title: string,
+   - onClick?: (playerData, openPopup: (id: string) => void) => playerData,
+   - style?: {},
+ }[],
+ - title,
+ - style?: {},
+
+
+Items:
+ - name: string
+ - id: uuid
+ - description: string
+ - secret: string
+ - equip: string
+ - data: {
+    weapon?: {
+        damage: string,
+        weaponType: type,
+        range: string,
+        attribute: attribute,
+        description: string
+    },
+    onEquip?: [
+        {location: string, command: string | string[], array: boolean}
+    ],
+    onShortRest?: [
+        {location: string, command: string| string[], array: boolean}
+    ],
+    onLongRest?: [
+        {location: string, command: string| string[], array: boolean}
+    ],
+    onUnequip?: [
+        {location: string, command: string| string[], array: boolean}
+    ],
+ }
+
+Game:
+ - mapData: [
+  {
+    id: string (UUID)
+    name: string (Name of the Map) => Should be ask as location for the Note
+    images: array of Paths,
+    players: [] Array of PlayerIDs on the Map
+    grid: { 
+        color: string; 
+        scale: number; 
+        type: "square" | "none" 
+    };
+    camera: {
+        position: {
+            x,y : number
+        },
+        scale: number
+    }
+    tokens: [{
+        type: "npc" | "player",
+        id: string,
+        position: {x:number,y:number},
+        size: int (1 = one Square, 2 = 4 squares),
+        visible: boolean => ONLY NPC
+        viewType: "cone" | "square" | "circle", => ONLY PLAYER
+        viewDistance: number => ONLY PLAYER
+        color: string,
+        coneAngle: number,
+        coneView: number,
+        name: string,
+    }]
+    npcs: [] Array of NPCData on the Map
+    notes: [
+       {
+         title: string
+         description: string
+         type: "note" | "effect" | "event"
+         fieldData: [] => Field Data allows to change Aspects of Players and NPCs | ONLY FOR FUTURE USE. 
+         NOT NEEDED AT THE MOMENT
+       }
+    ]
+  } 
+
+]
+ - playerData:
+    [
+        id: string
+        hp: number,
+        rk: number,
+        widgets: {
+            title: string,
+            layout: {
+                type: "flex-row", "flex-column", "grid",
+                style?: string,
+            }
+            children: {
+                type: "text" | "vertical-bar" | "horizontal-bar" | "image" | "pointArray" | "div"
+                style?: string
+                title: string
+                value: location
+                maxValue?: location
+                popup?: 
+                onClick?: TODO
+
+            }[]
+        }[]
+        disabled: boolean,
+        owner: string,
+        spells: [],
+        transformData: {
+            attributes: {
+
+            },
+            hp: number,
+            rk: rk
+            weapons: {
+
+            },
+            abilities: []
+            ubungRW,
+            ubungAB,
+            bewegungsrate,
+            spellSlots: {
+
+            },
+            spells: [],
+            tricks: [],
+            
+
+        }
+        diceAmount: number
+        rescueW: {
+            saves: 
+            fails:
+        }
+        spellSlots: {
+            1: number,
+            ... usw
+        }
+        items: {
+            - id: "costum" | id,
+            - name:
+            - amount
+            - description?
+            - gmInfo
+        }
+        weapons: {
+            - id: "costum" | id,
+            - name
+            - damageType
+            - damage
+            - description
+            - range
+            - attribute
+            - ubung
+            - gmInfo
+        },
+        money: {
+            pm:
+            gm:
+            sm:
+            km:
+        }
+
+    ]
+- itemData:
+    [
+        {
+            type: "weapon", "item",
+            id:
+            parent: "none" | id
+            name: 
+            Weapons:
+                - range
+                - description
+                - attribute
+                - damage
+                - weaponType
+            Items:
+                - description
+                - gmInfo
+                - amount
+                - allwaysFree
+        }
+    ]
+
+
+Class:
+
+field locations: z.b.: creationData.1.type
+
+onFieldUpdate: oldValue: Key für alter Wert.
+z.B.: Update des data.slots.1 -> oldValue+1 => newValue = oldValue+1
+z.B.: Update des data.slots.1 -> 1 => newValue = 1
+
+onFieldUpdate: ref:[test.data.2] => Data from field test.data.2
+
+
+- creationData: {
+    - 1: {
+        type: "single", "multi", "multiMax-X" => X for Number of Max Selections 
+        choices: [choiceNames],
+        description: "",
+        title: "",
+        choiseName: {
+            - 1
+            
+            - fieldData: [{ location, value, type}],
+        }
+    },
+    - 2: ...
+    - fieldInputs: {
+        title: ""
+        location: "",
+        type: "",
+        override: "",
+        description: "",
+
+    }
+}
+
+
+- fields: [{
+    location: "",
+    title: "",
+    description: "",
+    tab: "
+    type: string | boolean | number | language | ability | item | damageType | Spell => alles als Array möglich durch [];
+}]

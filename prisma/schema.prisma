@@ -1,0 +1,249 @@
+// schema.prisma
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model RegisterTokens {
+  id        String   @unique @default(uuid())
+  user      User     @relation(fields: [userId], references: [username])
+  userId    String
+  validTill DateTime
+}
+
+model AccessToken{
+  token String @unique
+  user User @relation(fields: [userId], references: [username])
+  userId String
+  validTill DateTime?
+}
+
+model User {
+  pw             String
+  username       String           @id @unique
+  email          String           @unique
+  roles          String
+  Characters     Character[]
+  cookies        Cookies[]
+  tokens          AccessToken[]
+  canUpload      Boolean          @default(true)
+  activated      Boolean          @default(true)
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+  createdBy      String           @default("-1")
+  updatedBy      String           @default("-1")
+  RegisterTokens RegisterTokens[]
+}
+
+model Cookies {
+  user      String
+  cookie    String   @id @unique @default(uuid())
+  validTill DateTime
+  owner     User?    @relation(fields: [user], references: [username])
+}
+
+model Ability {
+  name        String @unique
+  description String
+  custom      Boolean  @default(false)
+
+}
+
+model Language {
+  name      String  @unique
+  writeAble Boolean @default(true)
+}
+
+model Spell {
+  id          String   @unique @default(uuid())
+  name        String
+  description String?
+  level       Int
+  school      String?
+  classes     String[]
+  duration    String?
+  ritual      Boolean
+  castingTime String?
+  range       String?
+  components  String?
+  material    String?
+  licence  String @default("CC-BY-4.0")
+  custom      Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  createdBy   String   @default("-1")
+  updatedBy   String   @default("-1")
+}
+
+model DamageType {
+  name String @unique
+}
+
+model Volk {
+  name  String   @unique
+  files String[]
+  licence  String[]
+  description String @default("")
+}
+
+model Background {
+  name  String   @unique
+  files String[]
+  licence  String[]
+  description String @default("")
+}
+
+model Class {
+  name  String   @unique
+  files String[]
+  licence  String[]
+  description String @default("")
+}
+
+model Settings {
+  key       String   @unique
+  value     String
+  updatedAt DateTime @updatedAt
+  updatedBy String   @default("-1")
+}
+
+model World {
+  id String @unique @default(uuid())
+  month Json[]
+  days String[]
+  moons Json[]
+  name String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  createdBy   String   @default("-1")
+  updatedBy   String   @default("-1")
+}
+
+model Game {
+  id          String   @id @unique @default(uuid())
+  status      String
+  name        String
+  gamemaster  String
+  gamemasters String[]
+  playerData  Json[]
+  mapData     Json[]
+  itemData    Json[]
+  npcData     Json[]
+  worldData Json @default("{}")
+  roleplayData     Json[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  createdBy   String   @default("-1")
+  updatedBy   String   @default("-1")
+}
+
+model Npc {
+  id          String   @unique @default(uuid())
+  name        String
+  volk        String
+  data        Json
+  hp          String
+  rk          String
+  attributes  Json
+  fields      Json[]
+  ubungRW     String[]
+  ubungAB     String[]
+  ubungsBonus String
+  languages   String[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  createdBy   String   @default("-1")
+  updatedBy   String   @default("-1")
+  custom      Boolean  @default(false)
+}
+
+model AdditionalDataTypes{
+  id String @default(uuid()) @unique
+  data Json
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  createdBy   String   @default("-1")
+  updatedBy   String   @default("-1")
+  custom      Boolean  @default(false)
+}
+
+model Item {
+  id          String   @unique @default(uuid())
+  name        String
+  description String
+  type String @default("item")
+  equip String
+  secret      String
+  data   Json?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  createdBy   String   @default("-1")
+  updatedBy   String   @default("-1")
+  custom      Boolean  @default(false)
+}
+
+model News {
+  id        String   @unique @default(uuid())
+  title     String
+  text      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  createdBy String   @default("-1")
+  updatedBy String   @default("-1")
+}
+
+model Character {
+  id                    String   @unique @default(uuid())
+  owner                 User?    @relation(fields: [ownerId], references: [username])
+  ownerId               String?
+  characterName         String
+  playerName            String
+  classes               String[]
+  volk                  String
+  background            String @default("none")
+  attributes            Json
+  ubungRW               String[]
+  ubungAB               String[]
+  ubungsBonus           String
+  hp                    Int
+  rk                    Int
+  makel                 String   @default("")
+  ideale                String   @default("")
+  bindungen             String   @default("")
+  hintergrund           String   @default("")
+  alter                 Int      @default(20)
+  religion              String   @default("")
+  korperGrose           String   @default("")
+  geschlecht            String   @default("")
+  gesinnung             String   @default("rechtschaffen gut")
+  augenfarbe            String   @default("")
+  haarfarbe             String   @default("")
+  hautfarbe             String   @default("")
+  aussehen              String   @default("")
+  werdegang             String   @default("")
+  hintergrundGeschichte String   @default("")
+  languages             String[]
+  data                  Json
+  fields                Json[]
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+  createdBy             String   @default("-1")
+  updatedBy             String   @default("-1")
+}
+
+model WikiEntry {
+  id        String      @id @default(uuid())
+  author    String
+  title     String
+  content   String
+  updatedBy String
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+  parentId  String?     @map("parent_id") // Feld für die direkte Elternbeziehung
+  children  WikiEntry[] @relation("ParentChildArticles") // Feld für die direkten Kindartikel
+  parent    WikiEntry?  @relation("ParentChildArticles", fields: [parentId], references: [id])
+}

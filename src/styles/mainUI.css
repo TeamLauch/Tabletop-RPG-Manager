@@ -1,0 +1,27 @@
+.flex_column {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex_row {
+    display: flex;
+    flex-direction: row;
+}
+
+.justify_right {
+    text-align: right;
+    justify-content: right;
+    justify-items: right;
+}
+
+.justify_left {
+    text-align: left;
+    justify-content: left;
+    justify-items: left;
+}
+
+.felx_row_warp{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
