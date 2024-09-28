@@ -23,7 +23,7 @@ Features:
 Zunächst benötigen wir den Code der Anwendung
 
 ```bash
-git clone https://git2.lauch.eu/DnD/ttrpg-manager-public.git
+git clone https://git2.lauch.eu/DnD/tabletop-rpg-manager-public.git
 ```
 
 Nun können wir ein Docker Compose File erstellen.
@@ -75,4 +75,4 @@ Kommt bald :)
 
 ## Entwicklung
 
-Merge-Requests bitte nur an https://git2.lauch.eu/DnD/ttrpg-manager-public.git stellen. Github dient nur als Backup.
+Merge-Requests bitte nur an https://git2.lauch.eu/DnD/tabletop-rpg-manager-public.git stellen. Github dient nur als Backup.
