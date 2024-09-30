@@ -52,6 +52,7 @@ services:
       - "3000:3000" #Change Ports accordingly
     volumes:
       - /yourUploadsSave:/app/upload #Set Upload Folder
+      - /yourRulesetSave:/app/ruleset #Set Ruleset Folder
   db:
     image: postgres
     restart: always
