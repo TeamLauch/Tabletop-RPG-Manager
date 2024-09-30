@@ -3,6 +3,9 @@ import prisma from "./prisma";
 import { ATTRIBUTES, SUBATTRIBUTES } from "./constants";
 import fs from "fs";
 import * as ts from "typescript";
+import path from "path";
+
+import AdmZip from "adm-zip";
 
 export async function loadSpellsFromAPI() {
 	const spells = await axios.get("https://openrpg.de/srd/5e/de/api/spell");
@@ -476,8 +479,42 @@ export async function loadMonsterFromAPI() {
 	return toDatabase;
 }
 
+export async function installRuleset(ruleset) {
+	if (!ruleset || !ruleset.url) {
+		return false;
+	}
+	// Define local paths
+	const fileName = "ruleset.zip"; // Name of the ZIP file saved on the server
+	const filePath = path.join(process.cwd(), fileName); // Save file to the public folder
+
+	// Step 1: Download the ZIP file using axios
+	const response = await axios({
+		url: ruleset.url,
+		method: "GET",
+		responseType: "arraybuffer", // Important to ensure binary data is downloaded
+	});
+	console.log("Downloading Ruleset....");
+	// Step 2: Save the ZIP file locally
+	fs.writeFileSync(filePath, response.data);
+	console.log("Ruleset downloaded!\nUnziping Ruleset");
+	// Step 3: Unzip the downloaded file
+	const zip = new AdmZip(filePath);
+	const extractPath = path.join(process.cwd(), "ruleset-test"); // Directory to extract files to
+
+	// Ensure the extract path exists
+	if (!fs.existsSync(extractPath)) {
+		console.log("Creating Ruleset folder");
+		fs.mkdirSync(extractPath, { recursive: true });
+	}
+
+	// Extract the ZIP contents
+	zip.extractAllTo(extractPath, true);
+
+	console.log("Unzip done!");
+}
+
 /**
- * @todo ADD NPCS and mayby delete this all
+ *
  * Setup Database
  *
  */

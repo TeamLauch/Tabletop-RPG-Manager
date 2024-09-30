@@ -1,5 +1,6 @@
 import prisma from "@/utils/prisma";
 import setupDefaultDnD, {
+	installRuleset,
 	loadClassesAndRacesFromFolder,
 	loadMonsterFromAPI,
 	loadSpellsFromAPI,
@@ -36,7 +37,31 @@ export default async function handler(
 		return res.status(401).json({ message: "Setup not available" });
 	}
 
-	const { username, password } = req.body;
+	const { username, password, ruleset } = req.body;
+	if (!ruleset || ruleset.type != "dnd5e") {
+		return res.status(401).json({ message: "Only DnD as System available" });
+	}
+
+	if (ruleset.type == "dnd5e") {
+		await setupDefaultDnD();
+
+		await installRuleset(ruleset);
+
+		const monsters = await loadMonsterFromAPI();
+		const spells = await loadSpellsFromAPI();
+
+		await prisma.npc.createMany({
+			data: monsters,
+			skipDuplicates: true,
+		});
+		await prisma.spell.createMany({
+			data: spells,
+			skipDuplicates: true,
+		});
+
+		await loadClassesAndRacesFromFolder();
+	}
+
 	let salt = bcrypt.genSaltSync(10);
 	let pw = bcrypt.hashSync(password, salt);
 	await prisma.user.create({
@@ -44,14 +69,12 @@ export default async function handler(
 			username: username,
 			pw: pw,
 			roles: "admin",
-			email: "test@test.com",
+			email: "",
 			activated: true,
 			createdBy: "Setup-System",
 			updatedBy: "Setup-System",
 		},
 	});
-
-	await setupDefaultDnD();
 
 	if (!option) {
 		await prisma.settings.create({
@@ -72,20 +95,6 @@ export default async function handler(
 			},
 		});
 	}
-
-	await loadClassesAndRacesFromFolder();
-
-	const monsters = await loadMonsterFromAPI();
-	const spells = await loadSpellsFromAPI();
-
-	await prisma.npc.createMany({
-		data: monsters,
-		skipDuplicates: true,
-	});
-	await prisma.spell.createMany({
-		data: spells,
-		skipDuplicates: true,
-	});
 
 	return res.status(200).json({ message: "Setup done! Close the Window" });
 }

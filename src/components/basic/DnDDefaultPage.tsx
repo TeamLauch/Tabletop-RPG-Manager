@@ -25,10 +25,26 @@ export default function DnDDefaultPage({
 }) {
 	if (!user) {
 		return (
-			<>
-				{children}
+			<div
+				style={{
+					display: "flex",
+					flexDirection: "column",
+					minHeight: "100vh",
+
+					background:
+						"radial-gradient(circle, rgba(233,246,235,1) 0%, rgba(209,235,226,1) 48%, rgba(229,242,222,1) 100%)",
+				}}
+			>
+				<div style={{ flex: 1 }}>
+					{error && setError ? (
+						<DnDErrorMessage setError={setError} text={error}></DnDErrorMessage>
+					) : (
+						<></>
+					)}
+					{children ?? <></>}
+				</div>
 				<DnDFooter />
-			</>
+			</div>
 		);
 	}
 
