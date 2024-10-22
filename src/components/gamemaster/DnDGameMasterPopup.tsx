@@ -35,6 +35,7 @@ import { ATTRIBUTES } from "@/utils/constants";
  * * 11 => Change Token Color
  * * 12 => Add Fight
  * * 13 => Player selection
+ * * 18 => Datum Setzen
  */
 export default function DnDGameMasterPopup({
 	id,
@@ -1849,6 +1850,37 @@ export default function DnDGameMasterPopup({
 					</Button>
 				</DnDPopUpMenu>
 			);
+			case 18:
+				return (
+					<DnDPopUpMenu
+						onClose={() => {
+							onClose();
+						}}
+						title="Datum ändern"
+					>
+						<TextField
+							size="small"
+							value={localData.datum ?? data.datum}
+							onChange={(e) => {
+								setLocalData((prev) => ({ ...prev, datum: e.target.value }));
+							}}
+							label={"Datum"}
+						></TextField>
+						<Button
+							fullWidth
+							size="small"
+							sx={{ marginBottom: "10px" }}
+							variant="contained"
+							onClick={async () => {
+								await onSave({
+									datum: localData.datum ?? data.datum,
+								});
+							}}
+						>
+							Speichern
+						</Button>
+					</DnDPopUpMenu>
+				);
 		default:
 			return <></>;
 	}
