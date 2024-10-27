@@ -64,7 +64,11 @@ export default async function handler(
         }
     }
 
-    if (!users.includes(user.username)) {
+    if (
+        !users.includes(user.username) &&
+        game.gamemaster != user.username &&
+        !game.gamemasters.includes(user.username)
+    ) {
         return res
             .status(200)
             .json({ error: true, message: "Not part of Game" });
